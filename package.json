@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=./~oliversu/vuosi2_periodi4/mpjakk/week2/Navigation/",
+    "build": "vite build --base=/~oliversu/vuosi2_periodi4/mpjakk/week2/Navigation/",
     "preview": "vite preview"
   },
   "dependencies": {
