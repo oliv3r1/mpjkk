@@ -1,5 +1,6 @@
 ﻿# mpjkk
 
-# Viikko2: navigation
+# Viikko2: forms
 
-Open [https://users.metropolia.fi/~oliversu/vuosi2_periodi4/mpjakk/week2/Navigation](https://users.metropolia.fi/~oliversu/vuosi2_periodi4/mpjakk/week2/Navigation) to view it in the browser.
+Open [https://users.metropolia.fi/~oliversu/vuosi2_periodi4/mpjakk/week2/forms](https://users.metropolia.fi/~oliversu/vuosi2_periodi4/mpjakk/week2/forms) to view it in the browser.
+
