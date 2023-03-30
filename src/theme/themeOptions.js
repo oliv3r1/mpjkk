@@ -3,13 +3,16 @@ import '@fontsource/lato';
 
 const themeOptions = {
   typography: {
-    fontFamily: 'playfair-display',
+    fontfamily: 'playfair-display',
   },
   body1: {
-    fontFamily: 'lato',
+    fontfamily: 'lato',
   },
   body2: {
-    fontFamily: 'lato',
+    fontfamily: 'lato',
+  },
+  Button: {
+    fontfamily: 'playfair-display',
   },
 };
 
