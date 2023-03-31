@@ -1,8 +1,9 @@
-import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import PropTypes from 'prop-types';
 import useForm from '../hooks/FormHooks';
 import {useUser} from '../hooks/ApiHooks';
-import {Button} from '@mui/material';
+import {Box, Button, Grid, TextField} from '@mui/material';
 import {Container} from '@mui/system';
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {registerForm} from '../utils/errorMessages';
 import {registerValidators} from '../utils/validators';
 
@@ -36,8 +37,8 @@ const RegisterForm = (props) => {
   );
 
   return (
-    <Container maxWidth>
-      <ValidatorForm onSubmit={handleSubmit}>
+    <Container maxWidth="xs">
+      <ValidatorForm onSubmit={handleSubmit} noValidate>
         <TextValidator
           fullWidth
           margin="dense"
@@ -45,6 +46,7 @@ const RegisterForm = (props) => {
           label="Username"
           onChange={handleInputChange}
           value={inputs.username}
+          onBlur={handleUsername}
           validators={registerValidators.username}
           errorMessages={registerForm.username}
         />

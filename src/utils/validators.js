@@ -1,9 +1,9 @@
 const registerValidators = {
-  username: ['required', 'minStringLenth: 3'],
-  password: ['required', 'minStringLenth: 5'],
+  username: ['required', 'minStringLength: 3'],
+  password: ['required', 'minStringLength: 5'],
   confirm: [],
-  email: ['This field is required', 'isEmail'],
-  full_name: ['minStringLenth: 3'],
+  email: ['required', 'isEmail'],
+  full_name: ['minStringLength: 2'],
 };
 
 const loginValidators = {
