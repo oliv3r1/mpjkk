@@ -1,7 +1,5 @@
 import {ImageList} from '@mui/material';
-
 import {useMedia} from '../hooks/apiHooks';
-
 import MediaRow from './MediaRow';
 
 const MediaTable = () => {
