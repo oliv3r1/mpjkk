@@ -1,11 +1,13 @@
 import {
   AppBar,
-  Box,
-  Button,
   Container,
   createTheme,
   ThemeProvider,
   Toolbar,
+  Box,
+  Button,
+  CssBaseline,
+  Typography,
 } from '@mui/material';
 import {useContext, useEffect} from 'react';
 import {Link, Outlet, useLocation, useNavigate} from 'react-router-dom';
@@ -23,10 +25,9 @@ const Layout = () => {
     const userToken = localStorage.getItem('userToken');
     if (userToken) {
       console.log(userToken);
-      const user = await getUserByToken(userToken);
-      if (user) {
-        setUser(user);
-        console.log('Layout', user);
+      const userData = await getUserByToken(userToken);
+      if (userData) {
+        setUser(userData);
         const target = location.pathname === '/' ? '/home' : location.pathname;
         navigate(target);
         return;
@@ -40,43 +41,37 @@ const Layout = () => {
   }, []);
 
   const theme = createTheme(themeOptions);
+
   return (
     <ThemeProvider theme={theme}>
-      <Container fixed>
+      <CssBaseline />
+      <Container maxWidth="xl">
         <AppBar position="sticky">
-          <Toolbar>
-            <Box sx={{flexGrow: 1, display: {xs: 'flex'}}}>
-              <Button
-                sx={{my: 2, color: 'white', display: 'block'}}
-                component={Link}
-                to="/home"
-              >
+          <Toolbar disableGutters sx={{justifyContent: 'space-between'}}>
+            <Typography
+              variant="h6"
+              sx={{
+                m: 2,
+                letterSpacing: '.4rem',
+              }}
+            >
+              KVCI
+            </Typography>
+            <Box sx={{mr: 2}}>
+              <Button sx={{color: 'white'}} component={Link} to="/home">
                 Home
               </Button>
               {user ? (
                 <>
-                  <Button
-                    sx={{my: 2, color: 'white', display: 'block'}}
-                    component={Link}
-                    to="/profile"
-                  >
+                  <Button sx={{color: 'white'}} component={Link} to="/profile">
                     Profile
                   </Button>
-
-                  <Button
-                    sx={{my: 2, color: 'white', display: 'block'}}
-                    component={Link}
-                    to="/logout"
-                  >
+                  <Button sx={{color: 'white'}} component={Link} to="/logout">
                     Logout
                   </Button>
                 </>
               ) : (
-                <Button
-                  sx={{my: 2, color: 'white', display: 'block'}}
-                  component={Link}
-                  to="/"
-                >
+                <Button sx={{color: 'white'}} component={Link} to="/">
                   Login
                 </Button>
               )}

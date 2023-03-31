@@ -1,10 +1,12 @@
+import {Button, Container} from '@mui/material';
 import {useContext} from 'react';
+import {TextValidator, ValidatorForm} from 'react-material-ui-form-validator';
 import {useNavigate} from 'react-router-dom';
 import {MediaContext} from '../context/MediaContext';
 import {useAuthentication} from '../hooks/apiHooks';
 import useForm from '../hooks/FormHooks';
-import Button from '@mui/material/Button';
-import {TextField} from '@mui/material';
+import {registerForm} from '../utils/errorMessages';
+import {registerValidators} from '../utils/validators';
 
 const LoginForm = (props) => {
   const {setUser} = useContext(MediaContext);
@@ -33,32 +35,34 @@ const LoginForm = (props) => {
   );
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <TextField
+    <Container maxWidth="xs">
+      <ValidatorForm onSubmit={handleSubmit} noValidate>
+        <TextValidator
           fullWidth
+          margin="dense"
           name="username"
-          placeholder="Username"
+          label="Username"
           onChange={handleInputChange}
           value={inputs.username}
         />
-        <TextField
+        <TextValidator
           fullWidth
           margin="dense"
           name="password"
           type="password"
-          placeholder="Password"
+          label="Password"
           onChange={handleInputChange}
           value={inputs.password}
+          validators={registerValidators.password}
+          errorMessages={registerForm.password}
         />
-        <Button fullWidth sx={{mt: 0.7}} variant="contained" type="submit">
+        <Button fullWidth sx={{mt: 1}} variant="contained" type="submit">
           Login
         </Button>
-      </form>
-    </>
+      </ValidatorForm>
+    </Container>
   );
 };
-
 LoginForm.propTypes = {};
 
 export default LoginForm;
