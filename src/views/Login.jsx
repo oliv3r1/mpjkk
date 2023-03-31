@@ -9,7 +9,7 @@ const Login = (props) => {
     setFormToggle(!formToggle);
   };
   return (
-    <Grid container direction="column" alignItems="center">
+    <Grid container direction="column" alignItems="center" sx={{mt: 2}}>
       <Grid item xs={5}>
         <Typography component="h1" variant="h3"></Typography>
       </Grid>

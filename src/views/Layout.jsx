@@ -1,4 +1,12 @@
-import {createTheme, ThemeProvider} from '@mui/material';
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  createTheme,
+  ThemeProvider,
+  Toolbar,
+} from '@mui/material';
 import {useContext, useEffect} from 'react';
 import {Link, Outlet, useLocation, useNavigate} from 'react-router-dom';
 import {MediaContext} from '../context/MediaContext';
@@ -34,32 +42,51 @@ const Layout = () => {
   const theme = createTheme(themeOptions);
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/home">Home</Link>
-            </li>
-            {user ? (
-              <>
-                <li>
-                  <Link to="/profile">Profile</Link>
-                </li>
-                <li>
-                  <Link to="/logout">Logout</Link>
-                </li>
-              </>
-            ) : (
-              <li>
-                <Link to="/">Login</Link>
-              </li>
-            )}
-          </ul>
-        </nav>
+      <Container fixed>
+        <AppBar position="sticky">
+          <Toolbar>
+            <Box sx={{flexGrow: 1, display: {xs: 'flex'}}}>
+              <Button
+                sx={{my: 2, color: 'white', display: 'block'}}
+                component={Link}
+                to="/home"
+              >
+                Home
+              </Button>
+              {user ? (
+                <>
+                  <Button
+                    sx={{my: 2, color: 'white', display: 'block'}}
+                    component={Link}
+                    to="/profile"
+                  >
+                    Profile
+                  </Button>
+
+                  <Button
+                    sx={{my: 2, color: 'white', display: 'block'}}
+                    component={Link}
+                    to="/logout"
+                  >
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  sx={{my: 2, color: 'white', display: 'block'}}
+                  component={Link}
+                  to="/"
+                >
+                  Login
+                </Button>
+              )}
+            </Box>
+          </Toolbar>
+        </AppBar>
         <main>
           <Outlet />
         </main>
-      </div>
+      </Container>
     </ThemeProvider>
   );
 };
