@@ -1,9 +1,6 @@
 import {ImageList} from '@mui/material';
-import PropTypes from 'prop-types';
-import {useEffect, useState} from 'react';
 import {useMedia} from '../hooks/ApiHooks';
 import {useWindowSize} from '../hooks/WindowHooks';
-
 import MediaRow from './MediaRow';
 
 const MediaTable = () => {
