@@ -3,7 +3,7 @@ import {useContext} from 'react';
 import {TextValidator, ValidatorForm} from 'react-material-ui-form-validator';
 import {useNavigate} from 'react-router-dom';
 import {MediaContext} from '../context/MediaContext';
-import {useAuthentication} from '../hooks/apiHooks';
+import {useAuthentication} from '../hooks/ApiHooks';
 import useForm from '../hooks/FormHooks';
 import {registerForm} from '../utils/errorMessages';
 import {registerValidators} from '../utils/validators';
