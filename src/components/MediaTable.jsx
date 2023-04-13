@@ -2,9 +2,10 @@ import {ImageList} from '@mui/material';
 import {useMedia} from '../hooks/ApiHooks';
 import {useWindowSize} from '../hooks/WindowHooks';
 import MediaRow from './MediaRow';
+import propTypes from 'prop-types';
 
-const MediaTable = () => {
-  const {mediaArray} = useMedia();
+const MediaTable = ({myFilesOnly = false}) => {
+  const {mediaArray} = useMedia(myFilesOnly);
   const windowSize = useWindowSize();
 
   return (
@@ -16,6 +17,8 @@ const MediaTable = () => {
   );
 };
 
-MediaTable.propTypes = {};
+MediaTable.propTypes = {
+  myFilesOnly: propTypes.bool,
+};
 
 export default MediaTable;
