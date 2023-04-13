@@ -1,6 +1,5 @@
 import {Box, Button, Slider} from '@mui/material';
 import useForm from '../hooks/FormHooks';
-
 import {useLocation, useNavigate} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
 import {useMedia} from '../hooks/ApiHooks';
@@ -46,7 +45,7 @@ const Update = (props) => {
         description: allData,
       };
       const userToken = localStorage.getItem('userToken');
-      const upDateResult = await putMedia(data, userToken);
+      const upDateResult = await putMedia(file.file_id, data, userToken);
 
       console.log('doUpload', upDateResult);
       navigate('/home');
