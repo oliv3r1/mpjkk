@@ -1,8 +1,28 @@
 import {Card, CardContent, CardMedia, Typography} from '@mui/material';
 import {useLocation} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
+import {useUser} from '../hooks/ApiHooks';
+import {useEffect, useState} from 'react';
 
 const Single = () => {
+  const [owner, setOwner] = useState({username: ''});
+
+  const {getUser} = useUser();
+
+  const fetchUser = async () => {
+    try {
+      const token = localStorage.getItem('userToken');
+      const onwerInfo = await getUser(file.user_id, token);
+      setOwner(onwerInfo);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
   const {state} = useLocation();
   const file = state.file;
   let allData = {
@@ -19,7 +39,6 @@ const Single = () => {
   } catch (error) {
     /* empty */
   }
-
   let componentType = 'img';
   switch (file.media_type) {
     case 'video':
@@ -36,6 +55,13 @@ const Single = () => {
         {file.title}
       </Typography>
       <Card>
+        {/*
+        toinen tapa
+        {file.media_type === 'image' && <img src="" alt="" />}
+        {file.media_type === 'video' && <video src="" />}
+        {file.media_type === 'audio' && <audio src="" />}
+        */}
+
         <CardMedia
           controls={true}
           poster={mediaUrl + file.screenshot}
@@ -51,10 +77,12 @@ const Single = () => {
             saturate(${allData.filters.saturation}%)
             sepia(${allData.filters.sepia}%)
             `,
+            backgroundImage: file.media_type === 'audio' && `url(audio.jpg)`,
           }}
         />
         <CardContent>
           <Typography variant="body1">{allData.desc}</Typography>
+          <Typography variant="body2">by: {owner.username}</Typography>
         </CardContent>
       </Card>
     </>

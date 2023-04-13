@@ -6,13 +6,19 @@ import {mediaUrl} from '../utils/variables';
 const MediaRow = ({file}) => {
   return (
     <ImageListItem>
-      <img src={mediaUrl + file.thumbnails.w640} alt={file.title} />
+      <img
+        src={
+          file.media_type !== 'audio'
+            ? mediaUrl + file.thumbnails.w640
+            : 'audio.jpg'
+        }
+        alt={file.title}
+      />
       <ImageListItemBar
         title={file.title}
         subtitle={file.description}
         actionIcon={
           <Button
-            sx={{m: 2}}
             component={Link}
             variant="contained"
             to="/single"
