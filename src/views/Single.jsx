@@ -8,13 +8,14 @@ import {
 } from '@mui/material';
 import {useLocation} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
-import {useUser} from '../hooks/ApiHooks';
+import {useFavourite, useUser} from '../hooks/ApiHooks';
 import {useEffect, useState} from 'react';
 
 const Single = () => {
   const [owner, setOwner] = useState({username: ''});
 
   const {getUser} = useUser();
+  const {getFavourites, postFavourite} = useFavourite();
 
   const {state} = useLocation();
   const file = state.file;
@@ -52,8 +53,29 @@ const Single = () => {
     }
   };
 
+  const fetchLikes = async () => {
+    try {
+      const likeInfo = await getFavourites(file.file_id);
+      console.log(likeInfo);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const doLike = async () => {
+    try {
+      const token = localStorage.getItem('userToken');
+      const data = {file_id: file.file_id};
+      const likeInfo = await postFavourite(data, token);
+      console.log(likeInfo);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchUser();
+    fetchLikes();
   }, []);
 
   return (
@@ -92,7 +114,7 @@ const Single = () => {
           <Typography variant="body2">by: {owner.username}</Typography>
           <Typography variant="body2">Likes:</Typography>
           <ButtonGroup>
-            <Button>Like</Button>
+            <Button onClick={doLike}>Like</Button>
             <Button disabled={true}>Dislike</Button>
           </ButtonGroup>
         </CardContent>
