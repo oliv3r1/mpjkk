@@ -70,6 +70,7 @@ const useMedia = (myFilesOnly = false) => {
       method: 'PUT',
       headers: {
         'x-access-token': token,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     };

@@ -4,7 +4,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
 import {useMedia} from '../hooks/ApiHooks';
 
-const Update = (props) => {
+const Update = () => {
   const {putMedia} = useMedia();
   const navigate = useNavigate();
   const {state} = useLocation();
@@ -42,12 +42,12 @@ const Update = (props) => {
       };
       const data = {
         title: inputs.title,
-        description: allData,
+        description: JSON.stringify(allData),
       };
-      const userToken = localStorage.getItem('userToken');
-      const upDateResult = await putMedia(file.file_id, data, userToken);
 
-      console.log('doUpload', upDateResult);
+      const userToken = localStorage.getItem('userToken');
+      const updateResult = await putMedia(file.file_id, data, userToken);
+      console.log('doUpdate', updateResult);
       navigate('/home');
     } catch (error) {
       alert(error.message);
@@ -70,8 +70,9 @@ const Update = (props) => {
         src={selectedImage}
         alt="preview"
         style={{
-          width: 400,
-          height: 300,
+          width: '100%',
+          height: 400,
+          objectFit: 'contain',
           filter: `
           brightness(${filterInputs.brightness}%)
           contrast(${filterInputs.contrast}%)
@@ -92,7 +93,6 @@ const Update = (props) => {
           name="description"
           value={inputs.description}
         ></textarea>
-
         <Button type="submit">Upload</Button>
       </form>
       <Slider
@@ -134,7 +134,5 @@ const Update = (props) => {
     </Box>
   );
 };
-
-Update.propTypes = {};
 
 export default Update;
