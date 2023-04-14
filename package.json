@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/~oliversu/vuosi2_periodi4/mpjakk/week4/upload/",
+    "build": "vite build --base=/~oliversu/vuosi2_periodi4/mpjakk/week4/player/",
     "preview": "vite preview"
   },
   "dependencies": {
