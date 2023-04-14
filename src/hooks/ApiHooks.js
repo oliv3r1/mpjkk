@@ -171,9 +171,11 @@ const useFavourite = () => {
     };
     return await doFetch(baseUrl + 'favourites', fetchOptions);
   };
+
   const getFavourite = async (id) => {
-    return await doFetch(`${baseUrl}favourites/${id}`);
+    return await doFetch(baseUrl + 'favourites/file/' + id);
   };
+
   const deleteFavourite = async (id, token) => {
     const options = {
       method: 'DELETE',
@@ -181,8 +183,9 @@ const useFavourite = () => {
         'x-access-token': token,
       },
     };
-    return await doFetch(baseUrl + 'favourites/' + id, options);
+    return await doFetch(baseUrl + 'favourites/file/' + id, options);
   };
+
   return {postFavourite, getFavourite, deleteFavourite};
 };
 

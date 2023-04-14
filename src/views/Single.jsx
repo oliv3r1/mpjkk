@@ -1,4 +1,11 @@
-import {Card, CardContent, CardMedia, Typography} from '@mui/material';
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material';
 import {useLocation} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
 import {useUser} from '../hooks/ApiHooks';
@@ -8,20 +15,6 @@ const Single = () => {
   const [owner, setOwner] = useState({username: ''});
 
   const {getUser} = useUser();
-
-  const fetchUser = async () => {
-    try {
-      const token = localStorage.getItem('userToken');
-      const onwerInfo = await getUser(file.user_id, token);
-      setOwner(onwerInfo);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
 
   const {state} = useLocation();
   const file = state.file;
@@ -48,6 +41,20 @@ const Single = () => {
       componentType = 'audio';
       break;
   }
+
+  const fetchUser = async () => {
+    try {
+      const token = localStorage.getItem('userToken');
+      const onwerInfo = await getUser(file.user_id, token);
+      setOwner(onwerInfo);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <>
@@ -83,6 +90,11 @@ const Single = () => {
         <CardContent>
           <Typography variant="body1">{allData.desc}</Typography>
           <Typography variant="body2">by: {owner.username}</Typography>
+          <Typography variant="body2">Likes:</Typography>
+          <ButtonGroup>
+            <Button>Like</Button>
+            <Button disabled={true}>Dislike</Button>
+          </ButtonGroup>
         </CardContent>
       </Card>
     </>
